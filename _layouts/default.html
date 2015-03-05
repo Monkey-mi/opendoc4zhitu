@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{{ page.title }}</title>
+
+<!-- Bootstrap core CSS -->
+<link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Optional Bootstrap Theme -->
+<link href="data:text/css;charset=utf-8," data-href="./assets/css/bootstrap-theme.min.css" rel="stylesheet" id="bs-theme-stylesheet">
+
+<link href="./assets/css/patch.css" rel="stylesheet">
+
+<!-- Documentation extras -->
+<link href="./assets/css/docs.min.css" rel="stylesheet">
+<!--[if lt IE 9]><script src="./assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+<script src="./assets/js/ie-emulation-modes-warning.js"></script>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="./assets/js/html5shiv.js"></script>
+  <script src="./assets/js/respond.min.js"></script>
+<![endif]-->
+
+<!-- Favicons -->
+<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+<link rel="icon" href="/favicon.ico"> 
+</head> 
+
+<body>
+<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+<!-- Docs page layout -->
+<div class="bs-docs-header" id="content">
+	<div class="container">
+		<h1>{{ page.title }}</h1>
+		<p>v{{ page.version }}</p>
+	</div>
+</div>
+
+<div class="container bs-docs-container">
+	<div class="row">
+		<div class="col-md-9" role="main">
+			<!-- traverse paged posts  -->
+			{% for category in site.categories %}
+			<div class="bs-docs-section">
+				<h1 id="{{ category[0] }}" class="page-header">{{ category[0] }}&nbsp;{{ category[1].last.category_name }}</h1>
+
+				{% for post in category[1] reversed %}
+				<h3 id="{{ post.id | remove:"/" }}">{{ post.id | remove:"/" }}&nbsp;>>>{{ post.title }}</h3>
+				{{ post.content | markdownify }}
+				{% endfor %}
+			</div>
+			{% endfor %}
+		</div>
+
+		<div class="col-md-3">
+			<div class="bs-docs-sidebar hidden-print hidden-xs hidden-sm well" role="complementary">
+				<ul class="nav bs-docs-sidenav">
+					{% for category in site.categories %}
+					<li>
+						<a href="#{{ category[0] }}">{{ category[0] }}&nbsp;{{ category[1].last.category_name }}</a>
+						<ul class="nav">
+							{% for post in category[1] reversed %}
+							<li><a href="#{{ post.id | remove:"/" }}">{{ post.id | remove:"/" }}&nbsp;{{ post.title }}</a></li>
+							{% endfor %}
+						</ul>
+					</li>
+					{% endfor %}
+				</ul>
+				<a class="back-to-top" href="#top">返回顶部</a>
+			</div>
+		</div>
+	</div>
+</div>
+{% include foot.html %}
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="./assets/js/jquery.min.js"></script>
+<script src="./assets/js/bootstrap.min.js"></script>
+<script src="./assets/js/docs.min.js"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
+
