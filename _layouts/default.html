@@ -28,8 +28,7 @@
 <![endif]-->
 
 <!-- Favicons -->
-<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
-<link rel="icon" href="/favicon.ico"> 
+<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png"> <link rel="icon" href="/favicon.ico"> 
 </head> 
 
 <body>
@@ -51,9 +50,9 @@
 			<div class="bs-docs-section">
 				<h1 id="{{ category[0] }}" class="page-header">{{ category[0] }}&nbsp;{{ category[1].last.category_name }}</h1>
 
-				{% for post in category[1] reversed %}
-				<h3 id="{{ post.id | remove:"/" }}">{{ post.id | remove:"/" }}&nbsp;>>>{{ post.title }}</h3>
-				{{ post.content | markdownify }}
+				{% for post in category[1] reversed %} 
+					<h3 id="{{ post.id | remove:"/" }}">{{ post.id | remove:"/" }}&nbsp;>>>{{ post.title }}</h3>
+					{{ post.content | markdownify }}
 				{% endfor %}
 			</div>
 			{% endfor %}
