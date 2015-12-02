@@ -1,2 +1,6 @@
 _site/
 _drafts/
+/target/
+.classpath
+.project
+.settings/
